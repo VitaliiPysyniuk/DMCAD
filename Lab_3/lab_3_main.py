@@ -142,7 +142,9 @@ class Node:
                     self.value_matrix[i][j] = np.Infinity
                     minimum_value_from_row_and_column = self.min(axis=1)[i] + self.min(axis=0)[j]
                     self.value_matrix[i][j] = 0
-                    if minimum_value_from_row_and_column > self.next_path_to_split['value']:
+                    # if minimum_value_from_row_and_column > self.next_path_to_split['value']:
+                    if minimum_value_from_row_and_column >= self.next_path_to_split['value']:
+                        # print(i, j, minimum_value_from_row_and_column)
                         self.next_path_to_split['from'] = i
                         self.next_path_to_split['to'] = j
                         self.next_path_to_split['value'] = minimum_value_from_row_and_column
@@ -421,7 +423,7 @@ def print_result(tour, weight_matrix):
 
 
 if __name__ == '__main__':
-    weight_matrix = read_file('test_files/l3_2.txt')
+    weight_matrix = read_file('test_files/l3_4.txt')
 
     solver = Solver(weight_matrix)
     solver_result = solver.branch_and_bound_method()
