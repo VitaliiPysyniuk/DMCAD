@@ -202,13 +202,17 @@ def combine_loops(weight_matrix, adjacency_matrix):
 
 def print_result(loop):
     print(f'Direction: {string.ascii_uppercase[loop["loop_direction"][0]]}', end='')
+    i = 1
     for vertex in loop['loop_direction'][1:]:
         print(f' -> {string.ascii_uppercase[vertex]}', end='')
+        if i % 10 == 0:
+            print('\n\t\t\t', end='')
+        i += 1
     print(f'\n   Length: {loop["loop_length"]}')
 
 
 if __name__ == '__main__':
-    weight_matrix = read_file('test_files/l2_4.txt')
+    weight_matrix = read_file('test_files/l2_1.txt')
     best_combination = select_best_combination(weight_matrix)
     adjacency_matrix = generate_adjacency_matrix(weight_matrix, best_combination)
     adjacency_matrix_copy = deepcopy(adjacency_matrix)
